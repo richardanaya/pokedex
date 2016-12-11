@@ -1,0 +1,24 @@
+<style>
+pokemon-header {
+  display:block;
+  width: 100%;
+  background:black;
+  color: white;
+  height: 60px;
+  line-height: 60px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.pokemon-header_button {
+  cursor:pointer;
+}
+</style>
+<template id="pokemon-header">
+  <div>
+     <div class="pokemon-header_button" @click="$action('go_to_pokedex')">POKEDEX</div>
+  </div>
+</template>
+<script>
+sigil("pokemon-header")
+</script>

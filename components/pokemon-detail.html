@@ -1,0 +1,39 @@
+<style>
+pokemon-detail {
+  display: block;
+  text-align: center;
+  padding-top: 60px;
+}
+.pokemon-detail_container {
+  display: inline-block;
+  width: 460px;
+  border: solid 1px black;
+  padding: 15px;
+}
+</style>
+<template id="pokemon-detail">
+  <div class="pokemon-detail_container">
+    <img #src=":details.sprites.front_default"></img>
+    <br>
+    {{:details.name}}
+    <br>
+    Abilities: {{ getAbilities() }}
+  </div>
+</template>
+<script>
+sigil("pokemon-detail",["details"],{
+  defaults: {
+    details: {
+      abilities: [],
+      sprites: {
+        front_default:""
+      }
+    }
+  },
+  methods: {
+    getAbilities: function(){
+      return this.details.abilities.map(function(x){return x.ability.name}).join(", ")
+    }
+  }
+})
+</script>

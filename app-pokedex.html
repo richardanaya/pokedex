@@ -1,0 +1,40 @@
+<style>
+app-pokedex {
+  font-family: 'Roboto',Arial;
+}
+</style>
+<template id="app-pokedex">
+  <div>
+    <pokemon-header></pokemon-header>
+    <pokemon-loading %if=":pokemon.loading"></pokemon-loading>
+    <pokemon-grid
+      %if="!:pokemon.loading && :pokemon.current === -1"
+      :pokemon=":pokemon">
+    </pokemon-grid>
+    <pokemon-detail
+      %if="!:pokemon.loading && :pokemon.current !== -1"
+      :details=":pokemon.pokemon_references[:pokemon.current]">
+    </pokemon-detail>
+  </div>
+</template>
+<script>
+sigil("app-pokedex",["pokemon"],{
+  defaults:{
+    // Use store state as default
+    pokemon : store.state.pokemon
+  },
+  lifecycle: {
+    created: function(){
+      // Listen for new state
+      store.subscribe((function(){
+        this.pokemon = store.state.pokemon;
+      }).bind(this))
+      // Listen for actions and send to store
+      document.addEventListener("action",function(e){
+        store.dispatch(e.detail)
+      })
+      store.dispatch({type:"load_pokemon_page",page:0})
+    }
+  }
+})
+</script>

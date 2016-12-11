@@ -1,0 +1,18 @@
+<style>
+pokemon-grid {
+  display: block;
+  margin: 30px;
+}
+</style>
+<template id="pokemon-grid">
+  <div>
+    <pokemon-character-card
+      %for="p in :pokemon.pokemon_references"
+      @click="$action('select_pokemon',{index : $index})"
+      :name="p.name">
+    </pokemon-character-card>
+  </div>
+</template>
+<script>
+sigil("pokemon-grid",["pokemon"])
+</script>
