@@ -1,15 +1,25 @@
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,‌​100italic,300,300ita‌​lic,400italic,500,50‌​0italic,700,700itali‌​c,900italic,900' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="lib/reset.min.css">
-<script src="lib/es6-promise.min.js"></script>
-<script src="lib/fetch.min.js"></script>
-<script src="https://unpkg.com/sigiljs@latest/dist/sigil.min.js"></script>
-<script src="lib/kamea.min.js"></script>
-<script src="store/store.js"></script>
-<link rel="import" href="components/pokemon-character-card.html" >
-<link rel="import" href="components/pokemon-loading.html" >
-<link rel="import" href="components/pokemon-header.html" >
-<link rel="import" href="components/pokemon-detail.html" >
-<link rel="import" href="components/pokemon-grid.html" >
-<link rel="import" href="app-pokedex.html" >
-<title>Pokedex</title>
-<app-pokedex></app-pokedex>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>POKEDEX</title>
+    <link rel="import" href="app-pokedex.html" async>
+  </head>
+  <body>
+    <app-pokedex></app-pokedex>
+    <script>
+      //Only add webcomponents-lite.min.js if needed
+      var webComponentsSupported = ('registerElement' in document
+        && 'import' in document.createElement('link')
+        && 'content' in document.createElement('template'));
+
+      if (!webComponentsSupported) {
+        var wcPoly = document.createElement('script');
+        wcPoly.src = '/third_party/webcomponents-lite.min.js';
+        wcPoly.onload = lazyLoadPolymerAndElements;
+        document.head.appendChild(wcPoly);
+      }
+    </script>
+  </body>
+</html>
